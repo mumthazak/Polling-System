@@ -1,0 +1,62 @@
+{% include 'admin_header.html' %}
+
+<center><h1>Count Votes</h1>
+
+<!-- <table border="1">
+	<tr>
+		<th>Sno.</th>
+		<th>Candidate Name</th>
+	</tr>
+
+<tr>
+	{% for row in data['vote'] %}
+	<td>{{row['first_name']}}</td>
+	</tr>
+	{% endfor %}
+</table> -->
+
+<h1>Elections</h1>
+<table border="1" style="color: white;" class="table">
+	<tr>
+	<th>Sno.</th>
+	<th>Election Body</th>
+	<th>Election Date</th>
+	<th>Declared on</th>
+	<th>Status</th>
+	<th></th>
+	</tr>
+
+	
+	{% for row in data['election'] %}
+	<tr>
+
+		<td>{{loop.index}}</td>
+		<td>{{row['body']}}</td>
+		<td>{{row['election_date']}}</td>
+		<td>{{row['declared_on']}}</td>
+		<td>{{row['status']}}</td>
+		
+		{% if row['status']=='started' %}
+		<td><a href="admin_individual_count?action=view&id={{row['election_id']}}">View Status</a></td>
+		{% elif row['status']=='completed' %}
+		<td><a href="admin_view_booths?action=view_result&id={{row['election_id']}}">View Result</a></td>
+		{% endif %}
+
+
+
+	</tr>
+		
+
+
+	{% endfor %}	
+
+
+
+	
+</table>
+
+
+</center>
+</center>
+
+{% include 'public_footer.html' %}

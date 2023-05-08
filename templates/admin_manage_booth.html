@@ -1,0 +1,89 @@
+{% include'admin_header.html' %}
+
+<body>
+	<center>
+	<form method="post">
+		{% if data['booth_up'] %}
+		<h1>UPDATE BOOTHS</h1>
+		<table class="table" style="width: 500px;">
+			
+			<tr>
+				<th>Booth</th>
+				<td><input type="text" name="booth" value="{{data['booth_up'][0]['booth']}}" class="form-control"></td>
+			</tr>
+			<tr>
+				<th>District</th>
+				<td>
+					
+					<select name="district" class="form-control">
+						<option value="{{data['booth_up'][0]['district_id']}}">{{data['booth_up'][0]['district']}}</option>
+						{% for row in data['dist'] %}
+						<option value="{{row['district_id']}}">{{row['district']}}</option>
+						{% endfor %}
+					</select>
+					
+				</td>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="updatez" value="UPDATE" class="btn btn-primary"></td>
+			</tr>
+		</table>
+		{% else %}
+		<h1>SELECT BOOTH</h1>
+		<table class="table" style="width: 500px;">
+			
+			<tr>
+				<th>Booth</th>
+				<td><input type="text" name="booth" required="" class="form-control"></td>
+			</tr>
+			<tr>
+				<th>District</th>
+				<td>
+					
+					<select name="district" class="form-control">
+						<option>select</option>
+						{% for row in data['dist'] %}
+						<option value="{{row['district_id']}}">{{row['district']}}</option>
+						{% endfor %}
+					</select>
+					
+				</td>
+			</tr>
+
+			<tr>
+				<th>Username</th>
+				<td><input type="text" name="uname" required="" class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Password</th>
+				<td><input type="Password" name="psw" required="" class="form-control"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="submit" class="btn btn-primary"></td>
+			</tr>
+		</table>
+		{% endif %}
+		<h2>BOOTHS</h2><br>
+
+		<table class="table" style="width: 500px;">
+			<tr>
+				<th>Sl.no</th>
+				<th>Booth Name</th>
+				<th>District</th>
+			</tr>
+			{% for row in data['booth'] %}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['booth']}}</td>
+				<td>{{row['district']}}</td>
+				<td><a href="?action=delete&bid={{row['booth_lid']}}" class="btn btn-warning">DELETE </a></td>
+				<td><a href="?action=update&bid={{row['booth_lid']}}" class="btn btn-warning">UPDATE </a></td>
+			</tr>
+			{% endfor %}
+		</table>
+	</form>
+</center>
+
+{% include'public_footer.html' %}

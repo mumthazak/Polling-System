@@ -1,0 +1,51 @@
+{% include'admin_header.html' %}
+
+<body>
+	<center>
+	<h1>CANDIDATES</h1>
+	<form method="post">	
+		<table border="1" class="table" style="width: 500px;">
+			<tr>
+				<th>Sl.no</th>
+				<th>Election</th>
+				<th>District</th>
+				<th>First name</th>
+				<th>last name</th>
+				<th>Age</th>
+				<th>Dob</th>
+				<th>Place</th>		
+                <th>City</th>
+                <th>State</th>
+                <th>Phone</th>
+                <th>Email</th>
+                
+                <th>Aadhar number</th>
+                <th>Status</th>
+				</tr>
+			{% for row in data['candidate'] %}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['body']}}</td>
+				<td>{{row['district']}}</td>
+				<td>{{row['first_name']}}</td>
+				<td>{{row['last_name']}}</td>
+				<td>{{row['age']}}</td>
+				<td>{{row['dob']}}</td>
+				<td>{{row['place']}}</td>
+				<td>{{row['city']}}</td>
+				<td>{{row['state']}}</td>
+				<td>{{row['phone']}}</td>
+				<td>{{row['email']}}</td>
+				<td>{{row['aadhar']}}</td>
+				<td>{{row['candidate_status']}}</td>
+				{% if row['candidate_status']=='pending' %}
+				<td><a href="?action=accept&lid={{row['lids']}}"class="btn btn-danger">Accept</a></td>
+				<td><a href="?action=reject&lid={{row['lids']}}"class="btn btn-danger">Reject</a></td>
+				{% endif %}
+			</tr>
+			{% endfor %}
+		</table>
+	</form>
+
+</center>
+{% include'public_footer.html' %}

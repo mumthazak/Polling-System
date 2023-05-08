@@ -1,0 +1,99 @@
+{% include'admin_header.html' %}
+
+<body>
+  <center>
+    <form method="post">
+      {% if data['voter_up'] %}
+      <table class="table" style="width: 500px;">
+        <h1>UPDATE VOTER</h1>
+        <tr>
+          <th>First Name</th>
+          <td><input type="text" name="fname" value="{{data['voter_up'][0]['first_name']}}" required="" pattern="[a-zA-Z/s]{0,20}" class="form-control"></td>
+        </tr>
+        <tr>
+          <th>Last Name</th>
+          <td><input type="text" name="lname" value="{{data['voter_up'][0]['last_name']}}" required="" pattern="[a-zA-Z/s]{0,20}" class="form-control"></td>
+        </tr>
+        <tr>
+          <th>Age</th>
+          <td><input type="Age" name="age" value="{{data['voter_up'][0]['age']}}" required="" pattern="[0-9]{0,3}" class="form-control"></td>
+        </tr>
+        <tr>
+          <th>Date Of Birth</th>
+          <td><input type="Date" name="dob" value="{{data['voter_up'][0]['dob']}}" required="" class="form-control"></td>
+        </tr>
+        <tr>
+          <th>Place</th>
+          <td><input type="text" name="place" value="{{data['voter_up'][0]['place']}}" required="" pattern="[a-zA-Z/s]{0,20}" class="form-control"></td>
+        </tr>
+        <tr>
+          <th>City</th> 
+          <td><input type="text" name="city" value="{{data['voter_up'][0]['city']}}"  pattern="[a-zA-Z/s]{0,20}" required class="form-control"></td>  
+        </tr>
+        <tr>
+          <th>State</th>
+          <td><input type="text" name="state" value="{{data['voter_up'][0]['state']}}" required="" pattern="[a-zA-Z/s]{0,20}" class="form-control"></td>
+        </tr>
+        <tr>
+          <th>Phone</th>
+          <td><input type="number" name="num" value="{{data['voter_up'][0]['phone']}}" required="" pattern="[0-9]{10}" class="form-control"></td>
+        </tr>
+        <tr>
+          <th>Email</th>
+          <td><input type="Email" name="email" value="{{data['voter_up'][0]['email']}}" required="" class="form-control"></td>
+        </tr>
+        <tr>
+           <td colspan="2" align="center"><input type="submit" name="updatez" value="UPDATE" class="btn btn-primary"></td>
+          
+        </tr>
+      </table>
+      
+      {% endif %}
+      <table class="table" style="width: 500px;">
+        <h2>VOTERS</h2>
+        <form method="post">  
+    <table border="1" class="table" style="width: 500px;">
+      <tr>
+        <th>Sl.no</th>
+        <th>Booth</th>
+        <th>Election</th>
+        <th>First name</th>
+        <th>last name</th>
+        <th>Age</th>
+        <th>Dob</th>
+        <th>Place</th>    
+        <th>City</th>
+        <th>State</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Aadhar number</th>
+        </tr>
+        {% for row in data['voter'] %}
+      <tr>
+        <td>{{loop.index}}</td>
+        <td>{{row['booth']}}</td>
+        <td>{{row['body']}}</td>
+        <td>{{row['first_name']}}</td>
+        <td>{{row['last_name']}}</td>
+        <td>{{row['age']}}</td>
+        <td>{{row['dob']}}</td>
+        <td>{{row['place']}}</td>
+        <td>{{row['city']}}</td>
+        <td>{{row['state']}}</td>
+        <td>{{row['phone']}}</td>
+        <td>{{row['email']}}</td>
+        <td>{{row['aadhar']}}</td>
+        {% if row['login_type']=='voter_pending'%}
+         <td><a href="?action=accept&vid={{row['voter_log']}}" class="btn btn-success">ACCEPT</a></td>
+         <td><a href="?action=delete&vid={{row['voter_log']}}" class="btn btn-warning">REJECT</a></td>
+        {% elif row['login_type']=='voter' %}
+        <td><a href="?action=delete&vid={{row['voter_log']}}" class="btn btn-warning">DELETE</a></td>
+        <td><a href="?action=update&vid={{row['voter_log']}}" class="btn-warning">UPDATE</a></td>
+        {% endif %}
+        
+      </tr>
+      {% endfor %}
+      </table>
+    </form>
+  </center>
+{% include'public_footer.html' %}

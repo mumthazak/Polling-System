@@ -1,0 +1,54 @@
+{% include'candidates_header.html' %}
+
+<section class="home-banner-area relative" id="home" data-parallax="scroll" data-image-src="/static/img/vote.jpg">
+        <div class="overlay-bg overlay"></div>
+        <h1 class="template-name">E VOTING</h1>
+        <div class="container">
+            <div class="row fullscreen">
+                <div class="banner-content col-lg-12">
+                    <center>
+                    <center>
+        <h2 style="color: black">VOTING STATUS</h2><br>
+        <form>
+            <table  class="table" style="width: 600px;">
+                <tr>
+                    <th>Sl.no</th>
+                    <th>Candidate Name</th>
+                    <th>Total Vote</th>
+                    
+                </tr>
+                {% for row in data['result']%}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>{{row['candidate_name']}}</td>
+                    <td>{{row['total_vote']}}</td>
+                    <td><a href="candidates_view_boothwise" class="btn btn-danger">VIEW BOOTHWISE</a></td>
+                    <td><a href="candidates_view_districtwise" class="btn btn-danger">VIEW DISTRICTWISE</a></td>
+                    
+
+                </tr>
+                {% endfor %} 
+                
+
+                
+            </table>
+        </form>
+    </center>
+                    </center>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="head-bottom-meta">
+            <div class="d-flex meta-left no-padding">
+                <a href="#"><span class="fa fa-facebook-f"></span></a>
+                <a href="#"><span class="fa fa-twitter"></span></a>
+                <a href="#"><span class="fa fa-instagram"></span></a>
+            </div>
+        </div> -->
+    </section>
+
+
+
+    
+{% include'public_footer.html' %}

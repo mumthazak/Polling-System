@@ -1,0 +1,83 @@
+{% include'header.html' %}
+<body>
+  <center>
+    <form method="post">
+      <h2 ><u style="color:white">REGISTRATION FORM</u></h2><br>
+      <br>
+      <table class="table" style="width: 500px;">
+        <tr>
+          <th>Election</th>
+          <td><select name="election" class="form-control">
+            <option>SELECT</option>
+            {% for row in data['election'] %}
+            <option value="{{row['election_id']}}">{{row['body']}}</option>
+            {% endfor %}
+          </select></td>
+        </tr>
+        <tr>
+        <th>District</th>
+        <td>
+          
+          <select name="district" class="form-control">
+            <option>select</option>
+            {% for row in data['dist'] %}
+            <option value="{{row['district_id']}}">{{row['district']}}</option>
+            {% endfor %}
+          </select>
+          
+        </td>
+      </tr>
+        <tr>
+          <th>First Name</th>
+          <td><input type="text" name="fname" required="" class="form-control" pattern="[a-zA-Z/s]{0,20}"></td>
+        </tr>
+        <tr>
+          <th>Last Name</th>
+          <td><input type="text" name="lname" required="" class="form-control" pattern="[a-zA-Z/s]{0,20}"></td>
+        </tr>
+        
+        <tr>
+          <th>Date Of Birth</th>
+          <td><input type="Date" name="dob" required="" class="form-control"></td>
+        </tr>
+        <tr>
+          <th>Place</th>
+          <td><input type="text" name="place" required="" class="form-control" pattern="[a-zA-Z/s]{0,20}"></td>
+        </tr>
+        <tr>
+          <th>City</th> 
+          <td><input type="text" name="city" required="" class="form-control" pattern="[a-zA-Z/s]{0,20}"></td>  
+        </tr>
+        <tr>
+          <th>Aadhar card number</th>
+          <td><input type="number" required="" pattern="{12}" name="aadhar"></td>
+        </tr>
+        <tr>
+          <th>State</th>
+          <td><input type="text" name="state" required="" class="form-control" pattern="[a-zA-Z/s]{0,20}"></td>
+        </tr>
+        <tr>
+          <th>Phone</th>
+          <td><input type="number" name="pno" required="" class="form-control" pattern="[0-9]{10}"></td>
+        </tr>
+        <tr>
+          <th>Email</th>
+          <td><input type="Email" name="email" required="" class="form-control" ></td>
+        </tr>
+        <tr>
+          <th>Username</th>
+          <td><input type="text" name="uname" required=""  class="form-control"></td>
+        </tr>
+        <tr>
+          <th>Password</th>
+          <td><input type="Password" name="psw" required="" class="form-control"></td>
+        </tr>
+        
+        
+        <tr>
+          <td colspan="2" align="center"><input type="submit" name="submit" value="REGISTER" class="btn btn-primary"></td>
+        </tr>
+      </table>
+    </form>
+  </center>
+{% include'public_footer.html' %}

@@ -1,0 +1,43 @@
+{% include'district_header.html' %}
+<section class="home-banner-area relative" id="home" data-parallax="scroll" data-image-src="/static/img/vote.jpg">
+		<div class="overlay-bg overlay"></div>
+		<h1 class="template-name">E VOTING</h1>
+		<div class="container">
+			<div class="row fullscreen">
+				<div class="banner-content col-lg-12">
+					<center>
+		<form >
+			<h2 style="color: black">BOOTHS</h2><br>
+			<table class="table" style="width: 500px;">
+				<tr>
+					<th>Sl.No</th>
+					<th>District name</th>
+					<th>booth</th>
+
+				</tr>
+				{% for row in data['booths'] %}
+				<tr>
+					<td>{{loop.index}}</td>
+					<td>{{row['district']}}</td>
+ 					<td>{{row['booth']}}</td>
+				</tr>
+				{% endfor %}
+				
+			</table>
+		</form>
+	</center>
+					</h1>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="head-bottom-meta">
+			<div class="d-flex meta-left no-padding">
+				<a href="#"><span class="fa fa-facebook-f"></span></a>
+				<a href="#"><span class="fa fa-twitter"></span></a>
+				<a href="#"><span class="fa fa-instagram"></span></a>
+			</div>
+		</div> -->
+	</section>
+	
+
+{% include'public_footer.html' %}

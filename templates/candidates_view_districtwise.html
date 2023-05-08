@@ -1,0 +1,62 @@
+{% include'candidates_header.html' %}
+<section class="home-banner-area relative" id="home" data-parallax="scroll" data-image-src="/static/img/vote.jpg">
+		<div class="overlay-bg overlay"></div>
+		<h1 class="template-name">E VOTING</h1>
+		<div class="container">
+			<div class="row fullscreen">
+				<div class="banner-content col-lg-12">
+					<center>
+		<h2 style="color: white">DISTRICT WISE RESULT</h2><br>
+		<form>
+			<table class="table" style="width: 500px;">
+				<tr>
+					<th>Sl.no</th>
+					<th>District name</th>
+				</tr>
+				{%for row in data['district']%}
+				<tr>
+					<td>{{loop.index}}</td>
+					<td>{{row['district']}}</td>
+					<td><a href="?action=result&id={{row['district_id']}}" class="btn btn-success">VIEW RESULT</a></td>
+ 					
+				</tr>
+				{%endfor%}
+			</table>
+		</form>
+		{% if data['dis_result'] %}
+			<center>
+		<h2>RESULT</h2>
+		<form method="post">
+			<table>
+				<tr>
+					<th>Sl.no</th>
+					<th>Candidate name</th>
+					<th>Total vote</th>
+				</tr>
+				{%for row in data['dis_result']%}
+				<tr>
+					<td>{{loop.index}}</td>
+					<td>{{row['cand_name']}}</td>
+ 					<td>{{row['vote']}}</td>
+				</tr>
+				{%endfor%}
+			</table>
+	</center>
+{% endif %}
+	</center>
+					</h1>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="head-bottom-meta">
+			<div class="d-flex meta-left no-padding">
+				<a href="#"><span class="fa fa-facebook-f"></span></a>
+				<a href="#"><span class="fa fa-twitter"></span></a>
+				<a href="#"><span class="fa fa-instagram"></span></a>
+			</div>
+		</div> -->
+	</section>
+	
+
+
+{% include'public_footer.html' %}

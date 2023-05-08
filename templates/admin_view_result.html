@@ -1,0 +1,27 @@
+{% include'admin_header.html' %}
+<body>
+	<center>
+		<h2 style="color: black">RESULT</h2>
+		<form method="post">
+			<table class="table" style="width: 500px;">
+				<tr>
+					<th>Sl.no</th>
+					<th>Candidate</th>
+					<th>Result</th>
+				</tr>
+				{% for row in data['status']%}
+				<tr>
+					<td>{{loop.index}}</td>
+					<td>{{row['NAME']}}</td>
+					<td>{{row['total_vote']}}</td>
+				</tr>
+				{% endfor %}
+
+
+				
+			</table>
+			
+		</form>	
+	</center>
+ 
+{% include'public_footer.html' %}

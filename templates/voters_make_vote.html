@@ -1,0 +1,42 @@
+{% include'voters_header.html' %}
+<section class="home-banner-area relative" id="home" data-parallax="scroll" data-image-src="/static/img/vote.jpg">
+		<div class="overlay-bg overlay"></div>
+		<h1 class="template-name">E VOTING</h1>
+		<div class="container">
+			<div class="row fullscreen">
+				<div class="banner-content col-lg-12">
+					<body>
+					<center>
+					<h1>MAKE VOTE</h1>
+		<form>
+			<table border="1" class="table" style="width: 500px; color: white">
+				<tr>
+					<th>Sl no</th>
+					<th>Candidate_id</th>
+					
+				</tr>
+				{% for row in data['candidates'] %}
+				<tr>
+					<td>{{loop.index}}</td>
+					<td>{{row['NAME']}}</td>
+					<td><a href="?action=vote&ids={{data['ids']}}&cids={{row['candidate_id']}}" class="btn btn-danger">VOTE</a></td>
+					
+				</tr>
+				{% endfor %}
+			</table>
+		</form>
+					</center>
+					</h1>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="head-bottom-meta">
+			<div class="d-flex meta-left no-padding">
+				<a href="#"><span class="fa fa-facebook-f"></span></a>
+				<a href="#"><span class="fa fa-twitter"></span></a>
+				<a href="#"><span class="fa fa-instagram"></span></a>
+			</div>
+		</div> -->
+	</section>
+
+{% include'public_footer.html' %}

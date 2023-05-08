@@ -1,0 +1,93 @@
+{% include'admin_header.html' %}
+<body>
+	<center>
+<form method="post">
+	{% if data['district_up'] %}
+		
+		<table class="table" style="width: 500px;">
+		 <h1>UPDATE DISTRICTS</h1>
+		 <tr>
+		 	<th>District</th>
+		 	<td><select name="district" class="form-control">
+		 				<option>{{data['district_up'][0]['district']}}</option>
+						<option>select</option>
+						<option>Kasargod</option>
+						<option>Kannur</option>
+						<option>Wayanad</option>
+						<option>Kozhikode</option>
+						<option>Malappuram</option>
+						<option>Palakkad</option>
+						<option>Thrissur</option>
+						<option>Ernakulam</option>
+						<option>Idukki</option>
+						<option>Kottayam</option>
+						<option>Alappuzha</option>
+						<option>Pathanamthitta</option>
+						<option>Kollam</option>
+						<option>Thiruvananthapuram</option>
+					</select>
+			</td>		
+		 </tr>
+		
+		 <tr>
+		 	<td colspan="2" align="center"><input type="submit" name="updatez" value="UPDATE" required class="btn btn-primary" ></td>
+		 </tr>
+		</table>
+	
+	{% else %}
+	<table class="table" style="width: 500px;">
+		 <h1>ADD DISTRICTS</h1>
+		 <tr>
+		 	<th>District</th>
+		 	<td><select name="district" class="form-control">
+						<option>select</option>
+						<option>Kasargod</option>
+						<option>Kannur</option>
+						<option>Wayanad</option>
+						<option>Kozhikode</option>
+						<option>Malappuram</option>
+						<option>Palakkad</option>
+						<option>Thrissur</option>
+						<option>Ernakulam</option>
+						<option>Idukki</option>
+						<option>Kottayam</option>
+						<option>Alappuzha</option>
+						<option>Pathanamthitta</option>
+						<option>Kollam</option>
+						<option>Thiruvananthapuram</option>
+					</select>
+			</td>		
+		 </tr>
+		 <tr>
+			<th>Username</th>
+			<td><input type="text" name="uname" required="" class="form-control"></td>
+		</tr>
+		 <tr>
+		 	<th>Password</th>
+		 	<td><input type="Password" name="psw" required="" class="form-control"></td>
+		 </tr>
+		 <tr>
+		 	<td colspan="2" align="center"><input type="submit" name="submit" class="btn btn-primary"></td>
+		 </tr>
+		
+	</table>
+	{% endif %}
+	<table class="table" style="width: 500px;">
+		<tr>
+			<th>Sl.no</th>
+			<th>District</th>
+		</tr>
+		{% for row in data['district'] %}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['district']}}</td>
+				<td><a href="?action=delete&did={{row['login_id']}}"class="btn btn-warning">DELETE</a></td>
+				<td><a href="?action=update&did={{row['login_id']}}"class="btn btn-warning">UPDATE</a></td>
+			</tr>
+			{% endfor %}
+		
+	</table>
+	
+</form>
+</center>
+{% include'public_footer.html' %}

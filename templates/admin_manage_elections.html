@@ -1,0 +1,76 @@
+{% include'admin_header.html' %}
+<body>
+<center>
+	<form method="post">
+            {% if data['election_up'] %}
+            <h1>UPDATE ELECTION</h1>
+            <table class="table" style="width: 900px;">
+                  <tr>
+                        <th>Body</th>
+                        <td><input type="text" name="body" value="{{data['election_up'][0]['body']}}" required="" pattern="[a-zA-Z/s]{0,20}" class="form-control"></td>
+                  </tr>
+            <tr>
+                  <th>Election date</th>
+                  <td><input type="date" name="edate" value="{{data['election_up'][0]['election_date']}}" required="" class="form-control"></td>
+            </tr>
+      
+            <tr>
+                  <td colspan='2' align='center'><input type="submit" value="UPDATE" name="updatez" class="btn btn-primary"></td>
+            </tr>
+            </table>
+            {% else %}
+
+            <h1>MANAGE ELECTION</h1>
+		<table class="table" style="width: 500px;">
+			<tr>
+				<th>Body</th>
+				<td><input type="text" name="body" required="" class="form-control"></td>
+			</tr>
+            <tr>
+            	<th>Election date</th>
+            	<td><input type="date" name="edate" required="" class="form-control"></td>
+            </tr>
+            <tr>
+            	<th>Declared on</th>
+            	<td><input type="date" name="date" required="" class="form-control"></td>
+            </tr>
+            <tr>
+            	<td colspan='2' align='center'><input type="submit" name="submit" class="btn btn-primary"></td>
+            </tr>
+		</table>
+            {% endif %}
+            <table class="table" style="width: 500px;">
+                  <h2>ELECTIONS</h2><br>
+            
+                  <tr>
+                        <th>Sl.no</th>
+                        <th>Body</th>
+                        <th>Election date</th>
+                        <th>Declared on</th>
+                        <th>Status</th> 
+                  </tr>
+                  {% for row in data['election'] %}
+                  <tr>
+                        <td>{{loop.index}}</td>
+                        <td>{{row['body']}}</td>
+                        <td>{{row['election_date']}}</td>
+                        <td>{{row['declared_on']}}</td>
+                        <td>{{row['status']}}</td>
+                        {% if row['status']=='pending' %}
+                        <th><a href="?action=started&eid={{row['election_id']}}" class="btn btn-danger">START</a></th>
+                        {% elif row['status']=='started'%}
+                        <th><a href="?action=completed&eid={{row['election_id']}}" class="btn btn-danger">completed</a></th>
+                        {% elif row['status']=='completed'%}
+                        <th><a href="count_vote?eid={{row['election_id']}}" class="btn btn-danger">VIEW RESULT</a></th>
+                        {% endif %}
+                        <td><a href="?action=delete&eid={{row['election_id']}}"class="btn btn-warning">DELETE</a></td>
+                        <td><a href="?action=update&eid={{row['election_id']}}" class="btn btn-warning">UPDATE</a></td>
+
+                  </tr>
+                  {% endfor %}
+            </table>
+
+	</form>
+
+</center>
+{% include'public_footer.html' %}
